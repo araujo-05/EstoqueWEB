@@ -9,7 +9,7 @@
 
     <h1>Cadastro</h1>
 
-    <form method="POST" action="../../controllers/AuthController.php">
+    <form method="POST" action="../../controllers/RegisterController.php">
 
         <input type="text" name="nome" placeholder="Nome">
 

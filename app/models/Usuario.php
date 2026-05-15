@@ -20,6 +20,21 @@ class Usuario{
 
         return $stmt->execute();
     }
+
+    public function select(): array{
+        $query="SELECT * FROM {$this->table} ";
+        $stmt =  $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function selectEmail($email): array{
+        $query="SELECT * FROM {$this->table} WHERE email = (:email)";
+        $stmt =  $this->conn->prepare($query);
+        $stmt->bindParam(":email", $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

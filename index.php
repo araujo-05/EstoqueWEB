@@ -1,9 +1,7 @@
 <?php
 require_once 'app/config/database.php';
 
-$database = new Database();
-
-$conn = $database->connect();
-
-echo "banco conectado";
+if(!isset($_SESSION['username'])){
+    header("Location: app/views/auth/login.php");
+}
 ?>
