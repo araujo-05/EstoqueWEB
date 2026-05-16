@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../config/database.php';
 require_once '../models/Usuario.php';
 
@@ -17,9 +18,9 @@ if(isset($_POST['login'])){
 
         if($user){
             if(password_verify($senha, $user['senha'] )){
-                header("Location: ../views/dashboard");
-                session_start();
                 $_SESSION['username'] = $email;
+                header("Location: ../views/dashboard");
+                exit;
             } else{
                echo "senha incorreta";
             }
@@ -27,7 +28,7 @@ if(isset($_POST['login'])){
             echo "usuario não encontrado";
         }
     } catch(Exception $e){
-        echo "Erro: "+ $e->getMessage();
+        echo "Erro: ". $e->getMessage();
     }
 }
 ?>

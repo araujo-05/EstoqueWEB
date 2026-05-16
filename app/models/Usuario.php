@@ -28,12 +28,14 @@ class Usuario{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function selectEmail($email): array{
-        $query="SELECT * FROM {$this->table} WHERE email = (:email)";
+    public function selectEmail($email){
+        $query="SELECT * FROM {$this->table} WHERE email = :email";
         $stmt =  $this->conn->prepare($query);
         $stmt->bindParam(":email", $email);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return isset($resultados[0]) ? $resultados[0] : null;
     }
 }
 
