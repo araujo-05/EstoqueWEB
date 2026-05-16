@@ -11,11 +11,5 @@ if($_SESSION['username'] == null ){
     exit;
 }
 
-$database = new Database();
-$db = $database->connect();
-$dbUser = new Usuario($db);
-$user = $dbUser->selectEmail($_SESSION['username']);
-
-var_dump($_SESSION['username']);
 
 ?>

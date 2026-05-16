@@ -6,6 +6,8 @@ require_once '../models/Usuario.php';
 $database = new Database();
 $db = $database->connect();
 $dbUser = new Usuario($db);
+$mensagem = "";
+$tipo = "";
 
 if(isset($_POST['login'])){
     $email = $_POST['email'];
@@ -19,13 +21,17 @@ if(isset($_POST['login'])){
         if($user){
             if(password_verify($senha, $user['senha'] )){
                 $_SESSION['username'] = $email;
-                header("Location: ../views/dashboard");
+                $mensagem = "Login realizado com sucesso!";
+                $tipo = "success";
+                header("refresh:2;url=../views/dashboard");
                 exit;
             } else{
-               echo "senha incorreta";
+                $mensagem = "Senha incorreta";
+                $tipo = "danger";
             }
         } else{
-            echo "usuario não encontrado";
+            $mensagem = "Usuário não encontrado!";
+            $tipo = "warning";
         }
     } catch(Exception $e){
         echo "Erro: ". $e->getMessage();

@@ -3,30 +3,37 @@ session_start();
 require_once '../../config/database.php';
 require_once '../../models/Usuario.php';
 
+if(!isset($_SESSION['username'])){
+    header("Location: ../auth/login.php");
+    exit;
+}
+
 $database = new Database();
 $db = $database->connect();
 $dbUser = new Usuario($db);
 $user = $dbUser->selectEmail($_SESSION['username']);
 
-if($_SESSION['username'] != $user['email']){
+if(!$user){
+    session_destroy();
     header("Location: ../auth/login.php");
     exit;
 }
-
-echo "Bem vindo {$user['nome']}";
-var_dump($_SESSION['username']);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
 <body>
-    <form action="../auth/logout.php">
+
+    <h1>Bem vindo <?= $user['nome']; ?></h1>
+
+    <form action="../auth/logout.php" method="POST">
         <input type="submit" value="Sair">
     </form>
+
 </body>
 </html>
