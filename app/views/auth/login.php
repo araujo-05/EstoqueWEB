@@ -58,13 +58,11 @@ if(isset($_POST['login'])){
                         Login
                     </h2>
                      <?php if(!empty($mensagem)): ?>
-                    <div class="alert alert-<?= $tipo ?> alert-dismissible fade show" role="alert">
-                    <?= $mensagem ?>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert">
-                    </button>
-                    </div>
+                        <div class="alert alert-<?= $tipo ?> alert-dismissible fade show" role="alert">
+                            <?= $mensagem ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert">
+                            </button>
+                        </div>
                     <?php endif; ?>
                     <form method="POST">
                         <div class="mb-3">
