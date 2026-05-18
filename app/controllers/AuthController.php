@@ -16,8 +16,7 @@ if(isset($_POST['register'])) {
     $senha = $_POST['senha'];
 
     if($user->create($nome, $email, $senha)) {
-        echo "<script>alert('Usuário cadastrado')</script>";
-        header("location: ../views/auth/register.php");
+               header("location: ../views/auth/register.php");
     } else {
         echo "<script>alert('Erro')</script>";
         header("location: ../views/auth/register.php");
