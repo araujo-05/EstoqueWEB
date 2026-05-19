@@ -34,8 +34,7 @@
                         <button type="submit" name="login" class="btn btn-primary w-100">
                             Entrar
                         </button>
-                    </form>
-                    <a href=<?php app_url("/create");?>></a>
+                    </form>    
                 </div>
             </div>
         </div>

@@ -8,20 +8,20 @@ class Usuario{
         $this->conn = $db;
     }
 
-    public function create($nome, $email, $senha){
+    public function create($dados){
         $query= "INSERT INTO {$this->table} (nome, email, senha) VALUES (:nome, :email, :senha)";
         $stmt = $this->conn->prepare($query);
 
         $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-        $stmt->bindParam(":nome", $nome);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":senha", $senhaHash);
+        $stmt->bindParam(":nome", $dados['nome']);
+        $stmt->bindParam(":email", $dados['email']);
+        $stmt->bindParam(":senha", $dados['senhaHash']);
 
         return $stmt->execute();
     }
 
-    public function select(): array{
+    public function showAll(): array{
         $query="SELECT * FROM {$this->table} ";
         $stmt =  $this->conn->prepare($query);
         $stmt->execute();

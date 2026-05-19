@@ -4,36 +4,7 @@ $baixoEstoque = 8;
 $totalCategorias = 6;
 $totalValor = "R$ 15.450,00";
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="<?= app_url('/dashboard') ?>">EstoqueWEB</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item me-lg-3">
-                    <span class="text-light">Olá, <?= $user['nome']; ?></span>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= app_url('/logout') ?>" class="btn btn-danger btn-sm">Sair</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container py-5">
+<?php require_once __DIR__.'/../../includes/header.php';?>
     <div class="mb-5">
         <h1 class="fw-bold">Dashboard</h1>
         <p class="text-muted">Controle e gerenciamento do estoque</p>
@@ -87,9 +58,15 @@ $totalValor = "R$ 15.450,00";
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card border-0 shadow h-100">
+                <div class="card-body">
+                    <h4 class="mb-3">Usuários</h4>
+                    <p class="text-muted">Gerencie os Usuários.</p>
+                    <a href="<?= app_url('/usuario') ?>" class="btn btn-primary w-100">Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php require_once __DIR__. '/../../includes/footer.php';?>

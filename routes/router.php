@@ -72,6 +72,14 @@ return [
         "/logout" => function () {
             load("AuthController", "logout");
         },
+
+        "/usuario" => function(){
+            load("UsuarioController", "index");
+        },
+
+        "/usuario/create" => function(){
+            load("UsuarioController", "form");
+        }
     ],
 
     "POST" => [
@@ -84,6 +92,11 @@ return [
             auth();
             load("ProdutoController", "create");
         },
+
+        "/usuario" => function(){
+            auth();
+            load("UsuarioController", "create");
+        }
     ],
 ];
 ?>

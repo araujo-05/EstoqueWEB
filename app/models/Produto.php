@@ -63,7 +63,8 @@ class Produto {
                     produtos.quantidade,
                     produtos.preco
                 FROM produtos
-                INNER JOIN categorias ON produtos.categoria_id = categorias.id";
+                INNER JOIN categorias ON produtos.categoria_id = categorias.id
+                ORDER BY id ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
 

@@ -16,7 +16,7 @@ class HomeController{
             header('Location: ' . app_url('/login'));
             exit;
         }
-
+        
         require_once __DIR__ . '/../views/dashboard/index.php';
     }
 }

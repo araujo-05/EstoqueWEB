@@ -4,39 +4,39 @@ namespace app\controllers;
 
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../models/Produto.php';
+require_once __DIR__ . '/../models/Usuario.php';
 
-class ProdutoController
-{
+class ProdutoController{
     private \Produto $produto;
     private \PDO $db;
+    private \Usuario $sessionUser;
 
-    public function __construct()
-    {
+    public function __construct(){
         $database = new \Database();
         $this->db = $database->connect();
         $this->produto = new \Produto($this->db);
+        $this->sessionUser = new \Usuario($this->db);
     }
 
-    public function index(): void
-    {
+    public function index(): void{
         $produtos = $this->produto->showAll();
+        $user = $this->sessionUser->selectEmail($_SESSION['username']);
 
         require_once __DIR__ . '/../views/produtos/index.php';
     }
 
-    public function form(): void
-    {
+    public function form(): void{
         $categorias = $this->listarCategorias();
         $mensagem = $_SESSION['mensagem'] ?? '';
         $tipo = $_SESSION['tipo'] ?? '';
 
         unset($_SESSION['mensagem'], $_SESSION['tipo']);
+        $user = $this->sessionUser->selectEmail($_SESSION['username']);
 
         require_once __DIR__ . '/../views/produtos/create.php';
     }
 
-    public function create(): void
-    {
+    public function create(): void{
         $dados = [
             'nome' => $_POST['nome'] ?? '',
             'descricao' => $_POST['descricao'] ?? '',
@@ -57,8 +57,7 @@ class ProdutoController
         exit;
     }
 
-    private function listarCategorias(): array
-    {
+    private function listarCategorias(): array{
         $stmt = $this->db->prepare('SELECT * FROM categorias');
         $stmt->execute();
 
